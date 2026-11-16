@@ -17,15 +17,15 @@ import com.varabyte.kobweb.silk.style.CssStyle
 import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.style.toAttrs
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
+import io.github.zelenyy.components.sections.Footer
+import io.github.zelenyy.components.sections.NavHeader
+import io.github.zelenyy.toSitePalette
 import kotlinx.browser.document
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.fr
 import org.jetbrains.compose.web.css.percent
-import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.css.vh
-import io.github.zelenyy.components.sections.Footer
-import io.github.zelenyy.components.sections.NavHeader
-import io.github.zelenyy.toSitePalette
+import org.jetbrains.compose.web.dom.Div
 
 val PageContentStyle = CssStyle {
     base { Modifier.fillMaxSize().padding(leftRight = 2.cssRem, top = 4.cssRem) }
@@ -73,7 +73,7 @@ class PageLayoutData(val title: String)
 fun PageLayout(ctx: PageContext, content: @Composable ColumnScope.() -> Unit) {
     val data = ctx.data.getValue<PageLayoutData>()
     LaunchedEffect(data.title) {
-        document.title = "Kobweb - ${data.title}"
+        document.title = "${data.title} — Mikhail Zelenyi"
     }
 
     Box(
@@ -89,7 +89,7 @@ fun PageLayout(ctx: PageContext, content: @Composable ColumnScope.() -> Unit) {
             .gridTemplateRows { size(1.fr); size(minContent) },
         contentAlignment = Alignment.Center
     ) {
-        SvgCobweb(Modifier.gridRow(1).align(Alignment.TopStart))
+//        SvgCobweb(Modifier.gridRow(1).align(Alignment.TopStart))
         Column(
             // Isolate the content, because otherwise the absolute-positioned SVG above will render on top of it.
             // This is confusing but how browsers work. Read up on stacking contexts for more info.
