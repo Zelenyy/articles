@@ -3,7 +3,8 @@ package io.github.zelenyy.components.sections
 import androidx.compose.runtime.Composable
 import com.varabyte.kobweb.compose.css.TextAlign
 import com.varabyte.kobweb.compose.css.WhiteSpace
-import com.varabyte.kobweb.compose.foundation.layout.Box
+import com.varabyte.kobweb.compose.foundation.layout.Arrangement
+import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.*
@@ -16,10 +17,10 @@ import com.varabyte.kobweb.silk.style.base
 import com.varabyte.kobweb.silk.style.toModifier
 import com.varabyte.kobweb.silk.style.vars.color.ColorVar
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
+import io.github.zelenyy.toSitePalette
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.dom.Span
-import io.github.zelenyy.toSitePalette
 
 val FooterStyle = CssStyle.base {
     Modifier
@@ -29,20 +30,26 @@ val FooterStyle = CssStyle.base {
 
 @Composable
 fun Footer(modifier: Modifier = Modifier) {
-    Box(FooterStyle.toModifier().then(modifier), contentAlignment = Alignment.Center) {
+    Row(
+        modifier = FooterStyle.toModifier().then(modifier),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+        Span(Modifier.textAlign(TextAlign.Center).toAttrs()) {
+            SpanText("Mikhail Zelenyi, 2026")
+        }
         Span(Modifier.textAlign(TextAlign.Center).toAttrs()) {
             val sitePalette = ColorMode.current.toSitePalette()
-            SpanText("Built with ")
+            // Huge thanks to UI Rocket (https://ui-rocket.com) for putting this great template design together for us!
+            // If you like what you see here and want help building your own site, consider checking out their services.
+            SpanText("Powered by ")
             Link(
                 "https://github.com/varabyte/kobweb",
                 "Kobweb",
                 Modifier.setVariable(ColorVar, sitePalette.brand.primary),
                 variant = UncoloredLinkVariant
             )
-            SpanText(", template designed by ")
-
-            // Huge thanks to UI Rocket (https://ui-rocket.com) for putting this great template design together for us!
-            // If you like what you see here and want help building your own site, consider checking out their services.
+            SpanText("&")
             Link(
                 "https://ui-rocket.com",
                 "UI Rocket",
