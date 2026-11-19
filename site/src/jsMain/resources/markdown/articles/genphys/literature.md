@@ -101,4 +101,4 @@ date: 2026-11-16
 
 ## Бонусный мем
 
-{{{ .components.widgets.VideoPlayer("/videos/literature.mp4") }}}
+{{{ .components.widgets.VideoPlayer("/videos/literature.mp4", io.github.zelenyy.components.widgets.VideoOrientation.Portrait) }}}

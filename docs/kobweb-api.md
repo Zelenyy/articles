@@ -176,6 +176,9 @@ justifyItems / justifySelf / placeContent(AlignContent, JustifyContent)
   `MarkdownHandlers` в `@InitSilk`, но она требует кода на каждый тег).
 - Вызов виджетов из Markdown: `{{{ .components.widgets.VideoPlayer("/videos/file.mp4") }}}`
   (путь относительно `resources/public/`, т.е. `/videos/x.mp4` → `resources/public/videos/x.mp4`).
+  Ведущая `.` раскрывается генератором в `io.github.zelenyy.`, **остальной текст вставляется как есть**
+  и импорты для него не добавляются → типы из аргументов (enum'ы и т.п.) указывать только полным
+  именем: `io.github.zelenyy.components.widgets.VideoOrientation.Portrait`.
 - Frontmatter обязателен: `title` (проверяется в `@InitRoute` в `MarkdownLayout.kt`),
   плюс `summary`, `date` — используются генератором каталога в `site/build.gradle.kts`.
 - `PageContentStyle` ограничивает ширину текста: `Breakpoint.MD { maxWidth(60.cssRem) }`, на мобиле —
